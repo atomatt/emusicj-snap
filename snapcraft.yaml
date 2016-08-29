@@ -1,0 +1,33 @@
+name: emusicj
+version: 0.28-1
+summary: 
+  eMusic/J is a download manager for the eMusic digital music store.
+description: |
+  eMusic/J is a cross-platform, open source download manager for the eMusic.com
+  music service. It takes the .emx file that you get from the eMusic.com
+  website, and downloads the music specified in it. It can easily work with
+  Firefox or other browsers to make downloading songs and albums simple.
+architectures:
+  - amd64
+
+confinement: devmode
+
+apps:
+  emusicj:
+    command: ./run
+    plugs:
+      - home
+      - network
+      - x11
+
+parts:
+  java-runtime:
+    plugin: nil
+    stage-packages:
+      - openjdk-8-jre
+  emusicj:
+    plugin: dump
+    source: http://www.kallisti.net.nz/wikifiles/EMusicJ/emusicj-linux-x86_64-0.28.tar.gz
+  runner:
+    plugin: dump
+    source: ./runner
